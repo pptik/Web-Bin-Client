@@ -4,7 +4,7 @@
       <img src="/src/assets/images/logoBawasluOranye.svg" class="ui image medium"/>
     </div>
     <div class="eight wide column grey-text">
-      <h2 class="primary-color">Login</h2><br/>
+      <h2 class="primary-color">Masuk</h2><br/>
       <form class="ui form">
         <div class="field">
           <div>Email</div>

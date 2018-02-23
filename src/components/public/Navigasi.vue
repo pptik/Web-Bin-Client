@@ -4,14 +4,14 @@
       <span v-bind:class="{primarytext:highlight1}">Sahabat Bawaslu</span>
     </router-link>
     <div class="right menu">
-      <router-link to="/signup" class="item grey-text">
+      <router-link to="/signup" class="item">
         <aside>
           <span v-bind:class="{primarytext:highlight2}">
             Daftar
           </span>
         </aside>
       </router-link>
-      <router-link to="/signin" class="item grey-text">
+      <router-link to="/signin" class="item">
         <aside>
           <span v-bind:class="{primarytext:highlight3}">
             Masuk

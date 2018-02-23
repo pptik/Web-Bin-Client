@@ -1,6 +1,6 @@
 <template>
   <section class="ui container">
-    <navigasi :highlight1="false" :highlight2="false" :highlight3="false" :highlight4="false" :highlight5="true"></navigasi>
+    <navigasi :highlight1="false" :highlight2="true" :highlight3="false"></navigasi>
     <main class="ui segment" style='padding: 3em 4em 3em 4em;'>
         <konten-utama></konten-utama>
     </main>
@@ -16,7 +16,7 @@
     export default {
         name: "index",
         created () {
-          document.title = 'TADJ | Daftar';
+          document.title = 'Sahabat Bawaslu | Daftar';
         },
         data(){
           return{

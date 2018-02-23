@@ -1,0 +1,47 @@
+<template>
+  <nav class="ui secondary pointing menu">
+    <router-link to="/" class="item">
+      <span v-bind:class="{primarytext:highlight1}">Sahabat Bawaslu</span>
+    </router-link>
+    <div class="right menu">
+      <router-link to="/signup" class="item grey-text">
+        <aside>
+          <span v-bind:class="{primarytext:highlight2}">
+            Daftar
+          </span>
+        </aside>
+      </router-link>
+      <router-link to="/signin" class="item grey-text">
+        <aside>
+          <span v-bind:class="{primarytext:highlight3}">
+            Masuk
+          </span>
+        </aside>
+      </router-link>
+    </div>
+  </nav>
+</template>
+
+<script>
+  export default {
+    props: {
+      highlight1: {
+        type: Boolean,
+        required: true
+      },
+      highlight2: {
+        type: Boolean,
+        required: true
+      }
+    },
+   data (){
+     return{
+      //highlight:false
+     }
+   }
+  }
+</script>
+
+<style scoped>
+
+</style>

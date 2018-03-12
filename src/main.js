@@ -2,7 +2,7 @@
 import Vue from 'vue'
 import VueSession from 'vue-session'
 import App from './App.vue'
-import HakCipta from './components/HakCipta'
+import Copyright from './components/Copyright.vue'
 import VueRouter from 'vue-router'
 import Routes from './routes'
 import VueResource from 'vue-resource'
@@ -28,15 +28,15 @@ Vue.use(VueResource);
 Vue.use(VueSession);
 
 
-Vue.component('hak-cipta',HakCipta)
+Vue.component('copyright',Copyright);
 
 const router = new VueRouter({
   routes: Routes,
   mode: 'history'
-})
+});
 
 new Vue({
   el: '#app',
   render: h => h(App),
   router: router
-})
+});

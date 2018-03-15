@@ -3,9 +3,10 @@
     <navigation :highlight1="true" :highlight2="false" :highlight3="false"></navigation>
     <div class="ui stackable sixteen column grid">
       <div class="three wide column">
-       <left-navigation></left-navigation>
+        <left-navigation></left-navigation>
       </div>
       <div class="ten wide column">
+
         <main-content></main-content>
       </div>
       <div class="three wide column">
@@ -26,7 +27,7 @@
     import '../../assets/js/slick.min.js'
     import Navigation from './Navigation.vue';
     import LeftNavigation from './LeftNavigation.vue';
-    import MainContent from './HomeContent.vue';
+    import MainContent from './VideoContent.vue';
 
     import global_json from '../../assets/js/globalVariable.json';
 
@@ -38,14 +39,16 @@
         }
         document.title = 'Sahabat Banwaslu | Home';
       },
+        created () {
 
+        },
         data(){
           return{
-            username: this.$session.get('username')
+            username: this.$session.get('username'),
+
           }
         },
         components: {
-          LeftNavigation,
           MainContent,
           'left-navigation' : LeftNavigation,
           'navigation' : Navigation,

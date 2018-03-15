@@ -2,8 +2,7 @@
   <section class="ui container">
     <navigation :highlight1="false" :highlight2="false" :highlight3="true"></navigation>
     <main class="ui segment" style='padding: 3em 4em 3em 4em;'>
-
-      <main-content></main-content>
+     404 - NOT FOUND
     </main>
     <copyright></copyright>
   </section>
@@ -11,13 +10,11 @@
 
 <script>
   import '../../assets/js/slick.min.js'
-  import Navigation from './Navigation.vue';
-  import MainContent from './SigninContent.vue';
 
   export default {
     name: "index",
     created () {
-      document.title = 'Sahabat Bawaslu | Masuk';
+      document.title = 'Sahabat Bawaslu | NOT FOUND';
     },
     data(){
       return{
@@ -25,14 +22,11 @@
       }
     },
     beforeCreate:function () {
-      console.log('asd');
-      if(this.$session.exists('access_token')){
-        this.$router.push({path:'/admin/home'})
+      if (this.$session.exists()){
+        //go to home
       }
     },
     components: {
-      'navigation' : Navigation,
-      'main-content' : MainContent
     }
   }
 </script>

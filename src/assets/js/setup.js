@@ -8,6 +8,8 @@ const restAPI = {
   classList:globalURL+"/class/list",
   uploadFile:"http://localhost:3077/files/upload/single",
   createmaerial:globalURL+"/material/create",
+  materiallist:globalURL+"/material/list",
+  createnews:globalURL+"/news/create",
 };
 
 module.exports={restAPI,globalSetup};

@@ -102,6 +102,7 @@
       filesChange(fieldName, fileList) {
         this.hasMessage=false;
         this.loading=true;
+        this.hasError=false;
         const formData = new FormData();
         if (!fileList.length) return;
         Array
@@ -116,23 +117,30 @@
       },
       save(formData) {
         // upload data to the server
-        this.$http.post(restAPI.uploadFile,formData
-        ).then(function (data) {
-          console.log(data);
-          if(data.body.success === true){
-            this.hasUpload=true;
-            this.uploadedFiles.push(data.body.results);
-          }else if(data.body.success === false){
+          this.$http.post(restAPI.uploadFile,formData
+          ).then(function (data) {
+            console.log(data);
+            if(data.body.success === true){
+              this.hasUpload=true;
+              this.uploadedFiles.push(data.body.results);
+            }else if(data.body.success === false){
+              this.hasError=true;
+              this.errorText=data.body.rm;
+            }
+            this.loading=false;
+          }).catch(err=>{
+            console.log(err);
+            this.loading=false;
             this.hasError=true;
-            this.errorText=data.body.rm;
-          }
-          this.loading=false;
-        });
+            this.errorText="server not responding, please try again";
+          });
+
       },
       kirimMateri(){
         this.loading=true;
         let errorCheck=false;
         this.hasMessage=false;
+        this.hasError=false;
         if(this.title===""){
           errorCheck=true;
           this.hasError=true;

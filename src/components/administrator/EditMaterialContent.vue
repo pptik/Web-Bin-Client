@@ -1,6 +1,6 @@
 <template>
   <span>
-    <h1>Upload Modul</h1>
+ <h1>Edit Modul</h1>
     <div v-if="loading" class="ui active inverted dimmer">
              <div class="ui text loader">Loading</div>
            </div>
@@ -19,19 +19,21 @@
           <div>Deskripsi</div>
           <textarea  v-model="desc" name="comment" placeholder="Tulis Deksripsi" ></textarea>
         </div>
-      <div class="field">
+      <div v-if="isVideo">URL Video Youtube</div>
+          <input v-if="isVideo" type="text" autocomplete="title" placeholder="Tulis Judul" v-model="url"/>
+      <div v-if="!isVideo" class="field">
         <select v-model="modulType">
   <option disabled value="">Pilih Tipe Modul</option>
   <option value="1">Suplemen</option>
   <option value="2">Kasus</option>
 </select>
       </div>
-      <div class="ui positive message" v-if="hasUpload">
-      <p>File Berhasil di upload</p>
+      <div  class="ui positive message" v-if="hasUpload||!isVideo">
+      <p>Attachment</p>
       <ul id="example-1">
         <li v-for="(file,index) in uploadedFiles">
-                  {{ file.originalname }}
 
+ <a class="item" v-bind:href="file.http_path" target="_blank" >{{file.originalname}}</a>
 
   <i class="delete icon" v-on:click="deleteFile(index)"></i>
 
@@ -40,7 +42,7 @@
     </div>
        <div class="container">
       <!--UPLOAD-->
-      <form enctype="multipart/form-data">
+      <form v-if="!isVideo" enctype="multipart/form-data">
         <label>Upload files</label>
         <div class="dropbox">
           <input v-if="!loading" type="file" multiple :name="uploadFieldName"  @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length" accept="application/pdf,application/vnd.ms-excel" class="input-file">
@@ -50,7 +52,7 @@
   </div>
       <br>
         <div class="container">
-          <button v-on:click.prevent="kirimMateri" type="button" class="small ui blue button">Submit</button>
+          <button v-on:click.prevent="updateMateri" type="button" class="small ui blue button">Update</button>
         </div>
     </form>
 
@@ -66,9 +68,10 @@
     name: "konten",
     data(){
       return{
+        MaterialID : this.$route.params.MaterialID,
         errorText:'',
         hasError:false,
-        hasUpload:true,
+        hasUpload:false,
         uploadedFiles: [],
         uploadError: null,
         uploadFieldName: 'docFile',
@@ -77,25 +80,60 @@
         desc:'',
         hasMessage:false,
         messageText:'',
-        modulType:''
+        modulType:'',
+        isVideo:false,
+        url:''
       }
     },
 
     created(){
-
+      this.loadDetailMateri();
     },
     mounted() {
-      this.reset();
+
     },
     methods: {
       reset() {
         // reset form to initial state
         this.uploadedFiles = [];
-        this.uploadError = null;
-        this.hasError = false;
-        this.hasUpload = false;
-        this.title="";
-        this.desc="";
+      },
+      loadDetailMateri(){
+        this.$http.post(restAPI.detailmaterial,{
+            MaterialID:this.MaterialID
+          },{
+            headers:{
+              access_token:this.$session.get('access_token')
+            },
+          }
+        ).then(function (data) {
+
+          if(data.body.success === true){
+            let results=data.body.results;
+            console.log(results);
+            this.hasMessage=true;
+            this.messageText=data.body.rm;
+            this.title=results.title;
+            this.desc=results.desc;
+            if(results.type===0){
+              this.isVideo=true;
+              this.modulType=0;
+              if(results.files.length>0){
+                this.url=results.files[0]
+              }
+            }else {
+              this.uploadedFiles=results.files;
+              if(this.uploadedFiles.length>0){
+                this.hasUpload=true;
+              }
+              this.modulType=(results.type).toString();
+            }
+
+          }else if(data.body.success === false){
+            this.hasError=true;
+            this.errorText=data.body.rm;
+          }
+          this.loading=false;
+        });
       },
       filesChange(fieldName, fileList) {
         this.hasMessage=false;
@@ -115,26 +153,26 @@
       },
       save(formData) {
         // upload data to the server
-          this.$http.post(restAPI.uploadFile,formData
-          ).then(function (data) {
-            console.log(data);
-            if(data.body.success === true){
-              this.hasUpload=true;
-              this.uploadedFiles.push(data.body.results);
-            }else if(data.body.success === false){
-              this.hasError=true;
-              this.errorText=data.body.rm;
-            }
-            this.loading=false;
-          }).catch(err=>{
-            console.log(err);
-            this.loading=false;
+        this.$http.post(restAPI.uploadFile,formData
+        ).then(function (data) {
+          console.log(data);
+          if(data.body.success === true){
+            this.hasUpload=true;
+            this.uploadedFiles.push(data.body.results);
+          }else if(data.body.success === false){
             this.hasError=true;
-            this.errorText="server not responding, please try again";
-          });
+            this.errorText=data.body.rm;
+          }
+          this.loading=false;
+        }).catch(err=>{
+          console.log(err);
+          this.loading=false;
+          this.hasError=true;
+          this.errorText="server not responding, please try again";
+        });
 
       },
-      kirimMateri(){
+      updateMateri(){
         this.loading=true;
         let errorCheck=false;
         this.hasMessage=false;
@@ -154,17 +192,26 @@
           this.hasError=true;
           this.errorText='Silahkan pilih tipe modul';
         }
+        if(this.isVideo){
+          if(this.url===""){
+            errorCheck=true;
+            this.hasError=true;
+            this.errorText='Silahkan tambah url';
+          }
+          this.uploadedFiles.push(this.url);
+        }
 
         if(!errorCheck){
           this.loading=true;
-          this.$http.post(restAPI.createmaerial,{
+          this.$http.post(restAPI.updatematerial,{
+            MaterialID:this.MaterialID,
               Title: this.title,
               Desc:this.desc,
               Files: this.uploadedFiles,
               Type:this.modulType
             },{
               headers:{
-               access_token:this.$session.get('access_token')
+                access_token:this.$session.get('access_token')
               },
             }
           ).then(function (data) {

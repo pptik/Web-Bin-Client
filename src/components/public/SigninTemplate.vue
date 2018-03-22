@@ -1,10 +1,9 @@
 <template>
   <section class="ui container">
     <navigation :highlight1="false" :highlight2="false" :highlight3="true"></navigation>
-    <main class="ui segment" style='padding: 3em 4em 3em 4em;'>
+
 
       <main-content></main-content>
-    </main>
     <copyright></copyright>
   </section>
 </template>
@@ -25,7 +24,6 @@
       }
     },
     beforeCreate:function () {
-      console.log('asd');
       if(this.$session.exists('access_token')){
         this.$router.push({path:'/admin/home'})
       }

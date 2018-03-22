@@ -18,6 +18,13 @@
 .grey-text{
   color:#777777;
 }
+.home-text{
+  width: 50%;
+  padding: 10px;
+  text-align: left;
+  color:#777777;
+  font-size: 70px;
+}
 
 .white-text{
   color:#FFFFFF;
@@ -56,4 +63,12 @@ footer{
 #canvas-editor {
   margin-top: 50px;
   margin-left: 50px;
+}
+.main.container {
+  margin-top: 3em;
+}
+.fixed.menu {
+ height: 70px;
+  border: none;
+
 }

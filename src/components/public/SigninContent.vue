@@ -1,5 +1,5 @@
 <template>
-  <section class="ui grid stackable">
+  <section class="ui grid main container">
     <div class="eight wide column grey-text" align="center">
       <img src="/src/assets/images/logoBawasluOranye.svg" class="ui image medium"/>
     </div>

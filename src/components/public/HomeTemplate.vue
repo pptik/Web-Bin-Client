@@ -1,10 +1,12 @@
 <template>
-  <section class="ui container">
+  <section>
     <navigation :highlight1="true" :highlight2="false" :highlight3="false" ></navigation>
+
     <main-content></main-content>
 
 
     <copyright></copyright>
+
   </section>
 </template>
 
@@ -18,8 +20,8 @@
     export default {
       name: "index",
       beforeCreate:function () {
-        if (this.$session.exists()){
-          //go to home
+        if(this.$session.exists('access_token')){
+          this.$router.push({path:'/admin/home'})
         }
       },
       created () {

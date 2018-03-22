@@ -27,16 +27,16 @@
     import '../../assets/js/slick.min.js'
     import Navigation from './Navigation.vue';
     import LeftNavigation from './LeftNavigation.vue';
-    import MainContent from './MaterialContent.vue';
+    import MainContent from './EditMaterialContent.vue';
 
     import global_json from '../../assets/js/globalVariable.json';
 
     export default {
         name: "index",
       beforeCreate(){
-        /*if(this.$session.get('role') !== 0){
+        if(this.$session.get('role') !== 0){
           this.$router.push({path:'/notfound'})
-        }*/
+        }
         document.title = 'Sahabat Banwaslu | Home';
       },
         created () {

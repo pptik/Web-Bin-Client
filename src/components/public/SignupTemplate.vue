@@ -1,9 +1,9 @@
 <template>
   <section class="ui container">
     <navigation :highlight1="false" :highlight2="true" :highlight3="false"></navigation>
-    <main class="ui segment" style='padding: 3em 4em 3em 4em;'>
+
         <main-content></main-content>
-    </main>
+
     <copyright></copyright>
   </section>
 </template>

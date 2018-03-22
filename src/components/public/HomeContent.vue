@@ -1,12 +1,14 @@
 <template>
-  <span>
-    <div class="ui segment grey-text">
-      <p>
-        Selamat datang di website sahabat banwaslu
+    <section class="ui grid main container">
+      <div class="eight wide column">
+        <h1 class="home-text">learn and socialize</h1><br/>
 
-      </p>
+      </div>
+    <div class="eight wide column grey-text" align="right">
+      <img src="/src/assets/images/logoBawasluOranye.svg" class="ui image large"/>
     </div>
-  </span>
+    </section>
+
 </template>
 
 <script>

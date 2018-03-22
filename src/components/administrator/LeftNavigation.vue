@@ -1,7 +1,7 @@
 <template>
   <nav class="ui middle aligned divided list ">
     <div class="ui left pointing dropdown link item">
-      <i class="book icon large">Materi  </i>
+    Materi
 
       <div class="menu">
         <div class="item"><router-link to="/admin/material/list" class="grey-text">List</router-link></div>
@@ -11,7 +11,7 @@
 
     </div>
     <div class="ui left pointing dropdown link item">
-      <i class="newspaper icon large">Berita</i>
+      Berita
 
       <div class="menu">
         <div class="item"><router-link to="/admin/create/news" class="grey-text">Tambah Berita</router-link></div>

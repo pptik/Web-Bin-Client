@@ -21,8 +21,6 @@
         </div>
       <div>URL Video Youtube</div>
           <input type="text" autocomplete="title" placeholder="Tulis Judul" v-model="url"/>
-
-
       <br>
         <div class="container">
           <button v-on:click.prevent="kirimMateri" type="button" class="small ui blue button">Submit</button>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="ui secondary pointing menu">
+  <nav class="ui fixed menu">
     <router-link to="/" class="item">
       <span v-bind:class="{primarytext:highlight1}">Sahabat Bawaslu</span>
     </router-link>

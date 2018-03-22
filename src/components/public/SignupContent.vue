@@ -1,5 +1,5 @@
 <template>
-  <section class="ui grid stackable">
+  <section class="ui grid main container">
     <div class="eight wide column grey-text" align="center">
       <img src="/src/assets/images/logoBawasluOranye.svg" class="ui image medium"/>
     </div>
@@ -37,10 +37,6 @@
           <input type="password" placeholder="Ulangi sandi anda" v-model="confirmpassword"/>
         </div>
         <div class="field">
-          <div>Kode Kelas</div>
-          <input type="text" autocomplete="classcode" placeholder="Tulis kode kelas disini" v-model="classcode"/>
-        </div>
-        <div class="field">
           <div>Kode Referensi</div>
           <input type="text" autocomplete="referencecode" placeholder="Tulis kode referensi jika ada" v-model="referencecode"/>
         </div>
@@ -67,7 +63,6 @@ const {globalSetup}=require('../../assets/js/setup');
         phonenumber:'',
         password: '',
         confirmpassword: '',
-        classcode:'',
         referencecode:'',
         referenced:false,
         errorText:'',
@@ -99,12 +94,9 @@ const {globalSetup}=require('../../assets/js/setup');
           this.hasError=true;
           this.errorList.push("Password Anda Tidak Sesuai")
         }
-        if(this.classcode===''){
-          this.hasError=true;
-          this.errorList.push("Kode Kelas Tidak Boleh Kosong")
-        }
         if(this.referencecode!==''){
-          this.referenced=true;
+          this.hasError=true;
+          this.errorList.push("Silahkan isi kode referensi")
         }
         if(this.hasError){
           this.errorText="Silahkan Lengkapi Data Anda";
@@ -114,10 +106,8 @@ const {globalSetup}=require('../../assets/js/setup');
             Username:this.username,
             PhoneNumber:this.phonenumber,
             Password:this.password,
-            Referenced:this.referenced,
             ReferenceCode:this.referencecode,
-            SignupType:1,
-            ClassCode:this.classcode
+            SignupType:1
             }
           ).then(function (data) {
             console.log(data);

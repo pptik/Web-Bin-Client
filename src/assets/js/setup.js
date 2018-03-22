@@ -8,6 +8,9 @@ const restAPI = {
   classList:globalURL+"/class/list",
   uploadFile:"http://localhost:3077/files/upload/single",
   createmaerial:globalURL+"/material/create",
+  updatematerial:globalURL+"/material/update",
+  deletematerial:globalURL+"/material/delete",
+  detailmaterial:globalURL+"/material/detail",
   materiallist:globalURL+"/material/list",
   createnews:globalURL+"/news/create",
 };

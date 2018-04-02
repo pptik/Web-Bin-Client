@@ -17,6 +17,13 @@
         <div class="item"><router-link to="/admin/create/news" class="grey-text">Tambah Berita</router-link></div>
       </div>
     </div>
+    <div class="ui left pointing dropdown link item">
+      Kuis
+
+      <div class="menu">
+        <div class="item"><router-link to="/admin/create/quiz" class="grey-text">Tambah Kuis</router-link></div>
+      </div>
+    </div>
 
   </nav>
 </template>

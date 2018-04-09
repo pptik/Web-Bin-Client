@@ -21,6 +21,7 @@
       Kuis
 
       <div class="menu">
+        <div class="item"><router-link to="/admin/quiz/list" class="grey-text">List</router-link></div>
         <div class="item"><router-link to="/admin/create/quiz" class="grey-text">Tambah Kuis</router-link></div>
       </div>
     </div>

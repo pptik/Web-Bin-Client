@@ -138,9 +138,6 @@
             let results=data.body.results;
             if(results.length>0){
               this.materialList=this.materialList.concat(results);
-              console.log(this.materialList);
-              /*this.hasMessage=true;
-              this.messageText=data.body.rm;*/
               this.reset();
               this.skip=this.skip+5;
               if (results.length<5){

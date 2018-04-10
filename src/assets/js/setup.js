@@ -1,4 +1,4 @@
-const globalURL= "http://localhost:8183";
+const globalURL= "http://167.205.7.233:8183";
 const globalSetup = {
     app_id:4501
 };

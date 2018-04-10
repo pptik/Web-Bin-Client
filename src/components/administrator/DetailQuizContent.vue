@@ -351,8 +351,7 @@
             if(data.body.success === true){
               this.hasAnswerError=true;
               this.answerErrorText=data.body.rm;
-              let results=data.body.results;
-              this.questionList[this.questionKey]=results;
+              this.questionList[this.questionKey]=data.body.results;
             }else if(data.body.success === false){
               this.hasAnswerError=true;
               this.answerErrorText=data.body.rm;
@@ -419,6 +418,7 @@
           }
         })
       },
+
       deleteAnswer(index){
         this.answers.splice(index,1);
       },

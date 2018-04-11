@@ -94,7 +94,7 @@ const {globalSetup}=require('../../assets/js/setup');
           this.hasError=true;
           this.errorList.push("Password Anda Tidak Sesuai")
         }
-        if(this.referencecode!==''){
+        if(this.referencecode===''){
           this.hasError=true;
           this.errorList.push("Silahkan isi kode referensi")
         }

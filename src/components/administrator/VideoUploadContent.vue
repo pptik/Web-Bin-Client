@@ -1,8 +1,8 @@
 <template>
   <span>
-    <h1>Video Analisis</h1>
+    <h1>Data Analisis</h1>
     <div v-if="loading" class="ui active inverted dimmer">
-            <div class="ui text loader">Loading</div>
+             <div class="ui text loader">Loading</div>
            </div>
     <div class="ui negative message" v-if="hasError">
           <p>{{errorText}}</p>
@@ -11,46 +11,50 @@
           <p>{{messageText}}</p>
     </div>
     <form class="ui form">
-    <div class="field">
+    <!--
+      <div class="field">
           <div>Judul</div>
           <input type="text" autocomplete="title" placeholder="Tulis Judul" v-model="title"/>
         </div>
         <div class="field">
           <div>Deskripsi</div>
-         <textarea  v-model="desc" name="comment" placeholder="Tulis Deksripsi" ></textarea>
+          <textarea  v-model="desc" name="comment" placeholder="Tulis Deksripsi" ></textarea>
         </div>
-      <!-- <div class="field">
+        -->
+     <!-- <div class="field">
          <select v-model="modulType">
-   <option disabled value="">Pilih Tipe Modul</option>
-   <option value="1">Suplemen</option>
-   <option value="2">Kasus</option>
+   <option disabled value="">Pilih Tipe Data</option>
+   <option value="1">Image</option>
+   <option value="2">Video</option>
+           <option value="3">Audio</option>
  </select>
        </div>-->
-      <div class="ui positive message" v-if="hasUpload">
-      <p>File yang teelah diupload</p>
-      <ul id="example-1">
-
-        <li v-for="(file,index) in uploadedFiles">
-                  {{ file.originalname }}==>ftp://filehosting.pptik.id/nib/video/{{ file.originalname }}
-  <i class="delete icon" v-on:click="deleteFile(index)"> </i>
-
-        </li>
-      </ul>
-    </div>
-       <div class="container">
+      <div class="container">
       <!--UPLOAD-->
       <form enctype="multipart/form-data">
-        <label>Upload files</label>
+        <label>Upload files Image</label>
         <div class="dropbox">
-          <input v-if="!loading" type="file" multiple :name="uploadFieldName"  @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length" accept="audio/" class="input-file">
+          <input v-if="!loading" type="file" multiple :name="uploadFieldName"  @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length" accept="application/png,application/mp4" class="input-file">
           Drag your file(s) here to begin<br> or click to browse
         </div>
       </form>
   </div>
-      <br>
+
+      <div class="ui positive message" v-if="hasUpload">
+      <p>File Berhasil di upload</p>
+      <ul id="example-1">
+
+        <li v-for="(file,index) in uploadedFiles">
+                  {{ file.originalname }}
+  <i class="delete icon" v-on:click="deleteFile(index)"></i>
+
+        </li>
+      </ul>
+    </div>
+      <!--<br>
         <div class="container">
-          <button v-on:click.prevent="kirimImage" type="button" class="small ui blue button">Analisis</button>
-        </div>
+          <button v-on:click.prevent="kirimMateri" type="button" class="small ui blue button">Analisis</button>
+        </div>-->
     </form>
 
   </span>
@@ -69,7 +73,9 @@
         hasUpload:true,
         uploadedFiles: [],
         uploadError: null,
-        uploadFieldName: 'videoFile',
+        uploadFieldName: 'imgFile',
+        uploadFieldName1: 'videoFile',
+        uploadFieldName2: 'audioFile',
         loading:false,
         title:'',
         desc:'',
@@ -113,7 +119,7 @@
       },
       save(formData) {
         // upload data to the server
-        this.$http.post(restAPI.uploadFilevideo,formData
+        this.$http.post(restAPI.uploadFile,formData
         ).then(function (data) {
           console.log(data);
           if(data.body.success === true){
@@ -132,7 +138,7 @@
         });
 
       },
-      kirimImage(){
+      kirimMateri(){
         this.loading=true;
         let errorCheck=false;
         this.hasMessage=false;
@@ -147,12 +153,19 @@
           this.hasError=true;
           this.errorText='Silahkan isi deskripsi';
         }
+        // if(this.modulType===""){
+        // errorCheck=true;
+        //this.hasError=true;
+        //this.errorText='Silahkan pilih tipe modul';
+        //}
+
         if(!errorCheck){
           this.loading=true;
-          this.$http.post(restAPI.createImage,{
+          this.$http.post(restAPI.createmaerial,{
               Title: this.title,
               Desc:this.desc,
               Files: this.uploadedFiles,
+              Type:this.modulType
             },{
               headers:{
                 access_token:this.$session.get('access_token')

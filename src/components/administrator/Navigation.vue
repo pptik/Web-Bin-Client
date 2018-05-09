@@ -1,7 +1,7 @@
 <template>
   <nav class="ui secondary pointing menu">
     <router-link to="/" class="item">
-      <span v-bind:class="{primarytext:highlight1}">Sahabat Banwaslu</span>
+      <span v-bind:class="{primarytext:highlight1}">Bin Administration Web - Administrator</span>
     </router-link>
     <div class="right menu">
       <a href="#" v-on:click.prevent="keluar" class="item grey-text">

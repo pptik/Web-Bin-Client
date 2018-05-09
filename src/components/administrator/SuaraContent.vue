@@ -1,6 +1,6 @@
 <template>
   <span>
-    <h1>Video Analisis</h1>
+    <h1>Audio Analisis</h1>
     <div v-if="loading" class="ui active inverted dimmer">
             <div class="ui text loader">Loading</div>
            </div>
@@ -31,7 +31,7 @@
       <ul id="example-1">
 
         <li v-for="(file,index) in uploadedFiles">
-                  {{ file.originalname }}==>ftp://filehosting.pptik.id/nib/video/{{ file.originalname }}
+                  {{ file.originalname }}==>ftp://filehosting.pptik.id/nib/audio/{{ file.originalname }}
   <i class="delete icon" v-on:click="deleteFile(index)"> </i>
 
         </li>
@@ -41,8 +41,7 @@
       <!--UPLOAD-->
       <form enctype="multipart/form-data">
         <label>Upload files</label>
-        <div class="dropbox">
-          <input v-if="!loading" type="file" multiple :name="uploadFieldName"  @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length" accept="audio/" class="input-file">
+        <div class="dropbox"><input v-if="!loading" type="file" multiple :name="uploadFieldName"  @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length" accept="audio/*" class="input-file">
           Drag your file(s) here to begin<br> or click to browse
         </div>
       </form>
@@ -69,7 +68,7 @@
         hasUpload:true,
         uploadedFiles: [],
         uploadError: null,
-        uploadFieldName: 'videoFile',
+        uploadFieldName: 'audioFile',
         loading:false,
         title:'',
         desc:'',
@@ -113,7 +112,7 @@
       },
       save(formData) {
         // upload data to the server
-        this.$http.post(restAPI.uploadFilevideo,formData
+        this.$http.post(restAPI.uploadFilesuara,formData
         ).then(function (data) {
           console.log(data);
           if(data.body.success === true){

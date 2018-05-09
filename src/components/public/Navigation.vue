@@ -1,7 +1,7 @@
-<template>
+<!--<template>
   <nav class="ui fixed menu">
     <router-link to="/" class="item">
-      <span v-bind:class="{primarytext:highlight1}">Sahabat Bawaslu</span>
+      <span v-bind:class="{primarytext:highlight1}">Bin Administration Web</span>
     </router-link>
     <div class="right menu">
       <router-link to="/signup" class="item">
@@ -21,7 +21,7 @@
     </div>
   </nav>
 </template>
-
+-->
 <script>
   export default {
     props: {

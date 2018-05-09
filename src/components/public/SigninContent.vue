@@ -1,7 +1,7 @@
 <template>
   <section class="ui grid main container">
     <div class="eight wide column grey-text" align="center">
-      <img src="/src/assets/images/logoBawasluOranye.svg" class="ui image medium"/>
+      <img src="/src/assets/images/upload-1.png" class="ui image medium"/>
     </div>
     <div class="eight wide column grey-text">
       <h2 class="primary-color">Masuk</h2><br/>
@@ -62,9 +62,7 @@ const {globalSetup}=require('../../assets/js/setup');
             this.$session.set('access_token',results.access_token);
             this.$session.set('username',results.username);
             this.$session.set('name',results.name);
-            this.$session.set('role',results.role);
             this.$session.set('email',results.email);
-            this.$session.set('phone_number',results.phone_number);
             this.$session.set('UserData',results);
             switch (results.role){
               case 0:
@@ -83,10 +81,6 @@ const {globalSetup}=require('../../assets/js/setup');
       }
     }
   }
-
-
-
-
 </script>
 
 <style scoped>

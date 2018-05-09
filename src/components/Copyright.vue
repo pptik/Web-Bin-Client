@@ -3,7 +3,6 @@
     <p class="text-center">{{copyright}}</p>
   </footer>
 </template>
-
 <script>
     export default {
         /*props: {
@@ -14,7 +13,7 @@
         },*/
         data(){
           return{
-            copyright: "© 2018 PPTIK Institut Teknologi Bandung"
+            //copyright: "© 2018 PPTIK Institut Teknologi Bandung"
           }
         }
     }

@@ -12,7 +12,9 @@
         <div class="ui segment">
           <div class="ui middle aligned divided list">
             <div style="padding:1em;" class="item">
-              <div class="content">You are logged as <b>{{username}}</b></div>
+              <div class="content">Selamat Datang!</div>
+              <div class="content" style="margin-top: 10px"><router-link to="/admin/hasil"><b>Hasil</b></router-link></div>
+              <!--<div class="content">You are logged as <b>{{username}}</b></div>-->
             </div>
           </div>
         </div>
@@ -36,7 +38,7 @@
         if(this.$session.get('role') !== 0){
           this.$router.push({path:'/notfound'})
         }
-        document.title = 'Sahabat Banwaslu | Home';
+        document.title = 'Badan Intelijen Negara| Home';
       },
 
         data(){
@@ -56,5 +58,4 @@
 
 <style>
   @import '../../assets/css/custom.css';
-
 </style>

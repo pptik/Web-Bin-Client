@@ -26,7 +26,7 @@
       },
       created () {
 
-          document.title = 'Sahabat Banwaslu | Home';
+          document.title = 'Badan Intelijen Negara | Home';
         },
       data(){
         return{

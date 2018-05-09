@@ -14,7 +14,7 @@
   export default {
     name: "index",
     created () {
-      document.title = 'Sahabat Bawaslu | NOT FOUND';
+      document.title = 'Badan Intelijen Nasional | NOT FOUND';
     },
     data(){
       return{
